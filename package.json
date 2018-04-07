@@ -1,0 +1,56 @@
+{
+  "name": "vue-leave",
+  "description": "这是一个移动端拖放手势组件库",
+  "version": "1.0.2",
+  "author": "LoadChange <soocto@gmail.com>",
+  "license": "Apache-2.0",
+  "main": "dist/vue-resumable.js",
+  "private": false,
+  "keywords": [
+    "javascript",
+    "vue",
+    "vue.js",
+    "component",
+    "drag",
+    "drop",
+    "H5",
+    "拖拽",
+    "拖放",
+    "移动端"
+  ],
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "vue": "^2.5.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LoadChange/vue-leave"
+  },
+  "bugs": {
+    "url": "https://github.com/LoadChange/vue-leave/issues"
+  },
+  "homepage": "https://github.com/LoadChange/vue-leave#readme",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.4",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
