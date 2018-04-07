@@ -1,5 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+
 
 module.exports = {
   entry: './src/main.js',
@@ -91,7 +93,7 @@ if (process.env.NODE_ENV === 'production') {
 
   let output = module.exports.output
   module.exports.output = Object.assign({}, output, {
-    filename: 'vue-leave',
+    filename: 'vue-leave.js',
     library: 'VueLeave',
     libraryTarget: 'umd',
     umdNamedDefine: true
@@ -113,6 +115,7 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
+    new UglifyJSPlugin()
   ])
 }
