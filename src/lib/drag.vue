@@ -40,19 +40,35 @@
       _createDuplicate() {
         this.duplicateHTML = this.$refs.real.innerHTML
       },
+      _getDropComponents() {
+        let dropList = []
+        let filter = (components) => {
+          if (!components.length) {
+            return
+          }
+          for (let i = 0; i < components.length; i++) {
+            let child = components[i]
+            if (child.$options._componentTag === 'drop') {
+              dropList.push(child)
+            }
+            if (child.$children.length) {
+              filter(child.$children)
+            }
+          }
+        }
+        filter(this.$root.$children)
+        return dropList
+      },
       _detectObjective() {
         let dropList = []
         let dom1 = this.duplicate ? this.$refs.duplicate : this.$refs.real
-        let components = this.$parent.$children
-        for (let i = 0; i < components.length; i++) {
-          let item = components[i]
-          if (item.$options._componentTag === 'drop') {
-            if (overlap(dom1, item.$el)) {
-              dropList.push(item)
-            }
-            item.away()
+        let dropComponents = this._getDropComponents()
+        dropComponents.forEach(item => {
+          if (overlap(dom1, item.$el)) {
+            dropList.push(item)
           }
-        }
+          item.away()
+        })
         let drop = dropList.length ? dropList[0] : null
         if (drop) {
           drop.arrive(this)
@@ -88,12 +104,6 @@
         this._setStyle()
         this.$emit('dragend', event, this, this._detectObjective())
       }
-    },
-    mounted() {
-      this.$nextTick(() => {
-      })
-    },
-    created() {
     }
   }
 </script>
