@@ -43,7 +43,8 @@
 
 ### EXAMPLE
 
-```
+```html
+
 <template>
   <div id="app">
     <div class="example">
@@ -116,6 +117,9 @@
        * @param dropComponent
        */
       dragEnd(e, self, dropComponent) {
+        if (!dropComponent) { // 没有落在drop组件中,dropComponent为null
+          return
+        }
         let itemImg = dropComponent.$el.getElementsByClassName('item-img')[0]
         itemImg.style.backgroundImage = `url('${self.packet.img}')`
         itemImg.style.border = '2px solid #c7254e'
