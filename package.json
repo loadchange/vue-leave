@@ -1,7 +1,7 @@
 {
   "name": "vue-leave",
   "description": "这是一个移动端拖放手势组件库",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "LoadChange <soocto@gmail.com>",
   "license": "Apache-2.0",
   "main": "dist/vue-leave.js",
