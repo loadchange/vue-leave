@@ -6,7 +6,7 @@
       <div class="exhibit">
         <ul class="list">
           <li class="item" v-for="i in 4" :key="i">
-            <drop class="item-drop" @arrive="arrive" @away="away">
+            <drop class="item-drop" :name="i===1?'accurate':'item-'+i" @arrive="arrive" @away="away">
               <div class="item-img"></div>
             </drop>
           </li>
@@ -16,7 +16,7 @@
       <div class="photo-album">
         <ul class="list">
           <li class="item" v-for="(img,index) in photoAlbum" :key="index">
-            <drag duplicate constantly @dragend="dragEnd" :packet="{img:img}">
+            <drag duplicate @dragend="dragEnd" :packet="{img:img}" target="accurate">
               <div v-if="img" class="item-img" :style="{backgroundImage:'url('+img+')'}"></div>
             </drag>
           </li>

@@ -14,6 +14,7 @@
   export default {
     name: 'drag',
     props: {
+      target: {type: String, default: null},
       packet: {type: Object, default: {}},
       zIndex: {type: Number, default: 100},
       duplicate: {type: Boolean, default: false},
@@ -48,8 +49,15 @@
           }
           for (let i = 0; i < components.length; i++) {
             let child = components[i]
-            if (child.$options._componentTag === 'drop') {
-              dropList.push(child)
+            let options = child.$options
+            if (options._componentTag === 'drop') {
+              if (!this.target) {
+
+              } else {
+                if (options.propsData && options.propsData.name === this.target) {
+                  dropList.push(child)
+                }
+              }
             }
             if (child.$children.length) {
               filter(child.$children)
