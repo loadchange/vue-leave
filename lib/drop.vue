@@ -5,12 +5,12 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import GUID from '../common/guid'
+  import {getGUID} from './util'
 
   export default {
     name: 'drop',
     props: {
-      name: {type: String, default: new GUID().toString()}
+      name: {type: String, default: getGUID()}
     },
     methods: {
       arrive(element) {

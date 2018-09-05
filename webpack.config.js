@@ -89,7 +89,7 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.entry = './src/lib/index.js'
+  module.exports.entry = './lib/index.js'
 
   let output = module.exports.output
   module.exports.output = Object.assign({}, output, {

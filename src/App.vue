@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <div class="example">
-      <h1 class="title">vue-leave</h1>
-
+      <h1 class="title">Vue-Leave</h1>
+      <span class="subtitle">请使用手机📱访问，或手机调试模式</span>
       <div class="exhibit">
         <ul class="list">
           <li class="item" v-for="i in 4" :key="i">
-            <drop class="item-drop" :name="i===1?'accurate':'item-'+i" @arrive="arrive" @away="away">
+            <drop class="item-drop" name="accurate" @arrive="arrive" @away="away">
               <div class="item-img"></div>
             </drop>
           </li>
@@ -113,6 +113,12 @@
     .title {
       font-size: 36px;
       color: #c7254e;
+      text-align: center;
+    }
+    .subtitle {
+      display: block;
+      font-size: 12px;
+      color: #fff;
       text-align: center;
     }
     .list {

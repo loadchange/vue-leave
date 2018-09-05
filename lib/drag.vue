@@ -8,8 +8,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import GUID from '../common/guid'
-  import {overlap} from '../common/util'
+  import {overlap, getGUID} from './util'
 
   export default {
     name: 'drag',
@@ -22,7 +21,7 @@
     },
     data() {
       return {
-        dragId: new GUID().toString(),
+        dragId: getGUID(),
         realStyle: {zIndex: this.zIndex},
         duplicateStyle: {zIndex: this.zIndex},
         duplicateHTML: ''
