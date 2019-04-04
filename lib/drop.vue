@@ -5,20 +5,21 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {getGUID} from './util'
+import { getGUID } from "./util";
 
-  export default {
-    name: 'drop',
-    props: {
-      name: {type: String, default: getGUID()}
+export default {
+  name: "drop",
+  props: {
+    name: { type: String, default: getGUID() }
+  },
+  methods: {
+    arrive(element) {
+      this.$emit("arrive", element.packet, this);
     },
-    methods: {
-      arrive(element) {
-        this.$emit('arrive', element.packet, this)
-      },
-      away() {
-        this.$emit('away', this)
-      }
+
+    away() {
+      this.$emit("away", this);
     }
   }
+};
 </script>
