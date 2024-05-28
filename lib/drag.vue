@@ -1,6 +1,6 @@
 <template>
   <div class="drag" :id="dragId">
-    <div class="real" ref="real" :style="realStyle" @touchmove="touchMove" @touchend="touchEnd">
+    <div class="real" ref="real" :style="realStyle" @touchmove="touchMove" @touchend="touchEnd" @mousedown="mouseDown" @mousemove="mouseMove" @mouseup="mouseUp">
       <slot></slot>
     </div>
     <div class="duplicate" ref="duplicate" :style="duplicateStyle" v-html="duplicateHTML"></div>
@@ -24,7 +24,8 @@ export default {
       dragId: getGUID(),
       realStyle: { zIndex: this.zIndex },
       duplicateStyle: { zIndex: this.zIndex },
-      duplicateHTML: ""
+      duplicateHTML: "",
+      dragging: false
     };
   },
   methods: {
@@ -109,6 +110,41 @@ export default {
     },
 
     touchEnd(event) {
+      if (this.duplicate) {
+        this.duplicateHTML = "";
+      }
+      this._setStyle();
+      this.$emit("dragend", event, this, this._detectObjective());
+    },
+
+    mouseDown(event) {
+      this.dragging = true;
+      this.mouseMove(event);
+    },
+
+    mouseMove(event) {
+      if (!this.dragging) return;
+      event.preventDefault();
+      let target = event.target;
+      if (this.duplicate) {
+        this._createDuplicate();
+      }
+      this._setStyle({
+        position: "fixed",
+        display: "block",
+        opacity: ".6",
+        top: `${event.pageY - target.offsetHeight / 2}px`,
+        left: `${event.pageX - target.offsetWidth / 2}px`,
+        width: `${target.offsetWidth}px`,
+        height: `${target.offsetHeight}px`
+      });
+      if (this.constantly) {
+        this._detectObjective();
+      }
+    },
+
+    mouseUp(event) {
+      this.dragging = false;
       if (this.duplicate) {
         this.duplicateHTML = "";
       }
